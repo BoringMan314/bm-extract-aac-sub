@@ -22,7 +22,7 @@
 
 ---
 
-bm-extract-aac-sub 執行結果示意
+![bm-extract-aac-sub 於 PowerShell／終端機批次擷取音軌（AAC）與字幕的示意](screenshot/screenshot.png)
 
 ---
 
