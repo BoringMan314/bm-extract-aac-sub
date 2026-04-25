@@ -2,7 +2,6 @@
     [ValidateSet('EN','TW','CN','JP')]
     [string]$Language = 'EN',
     [string]$InputListFile,
-    [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$Inputs
 )
 
