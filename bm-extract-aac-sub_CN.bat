@@ -2,10 +2,11 @@
 chcp 65001 >nul
 color 0b
 cls
-title [B.M] 音轨字幕提取器（AAC + Sub）By. [B.M] 圓周率 3.14
+title [B.M] 音轨字幕提取器（AAC + Sub）V1.0 By. [B.M] 圓周率 3.14
 setlocal EnableExtensions
 set "SCRIPT_DIR=%~dp0"
 set "PS1=%SCRIPT_DIR%bm-extract-aac-sub.ps1"
+set "BM_PS1=%PS1%"
 set "INPUT_LIST=%TEMP%\extract_inputs_%RANDOM%_%RANDOM%.txt"
 
 if not exist "%PS1%" (
@@ -15,7 +16,7 @@ if not exist "%PS1%" (
 )
 
 if "%~1"=="" (
-    powershell -NoProfile -ExecutionPolicy Bypass -File "%PS1%" -Language CN
+    powershell -NoProfile -ExecutionPolicy Bypass -Command "& $env:BM_PS1 -Language CN"
     goto :AfterRun
 )
 
@@ -27,7 +28,8 @@ shift
 goto :ArgLoop
 
 :RunWithList
-powershell -NoProfile -ExecutionPolicy Bypass -File "%PS1%" -Language CN -InputListFile "%INPUT_LIST%"
+set "BM_INPUT_LIST=%INPUT_LIST%"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& $env:BM_PS1 -Language CN -InputListFile $env:BM_INPUT_LIST"
 
 :AfterRun
 set "RC=%ERRORLEVEL%"

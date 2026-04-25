@@ -1,9 +1,10 @@
 # [B.M] 音軌字幕擷取器（AAC + Sub）
 
-[Platform](https://www.microsoft.com/windows)
-[Shell](https://learn.microsoft.com/powershell/)
-[FFmpeg](https://ffmpeg.org/)
-[License: MIT](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows-0078D6)](https://www.microsoft.com/windows)
+[![Shell](https://img.shields.io/badge/Shell-PowerShell-5391FE)](https://learn.microsoft.com/powershell/)
+[![FFmpeg](https://img.shields.io/badge/Dependency-FFmpeg-007808)](https://ffmpeg.org/)
+[![GitHub](https://img.shields.io/badge/GitHub-bm--extract--aac--sub-181717?logo=github)](https://github.com/BoringMan314/bm-extract-aac-sub)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 `bm-extract-aac-sub` 是一個 Windows 腳本工具，用來批次掃描影片檔並匯出：
 
@@ -59,7 +60,7 @@
 - **Windows**（建議 Windows 10/11）
 - **PowerShell**
 - `ffmpeg.exe` 與 `ffprobe.exe`（需與腳本放在同一資料夾；本儲存庫未附帶執行檔）
-- 本專案開發與測試時使用的 `ffmpeg` / `ffprobe` 版本：**7.1**
+- 本專案開發與測試時使用的 `ffmpeg` / `ffprobe` 版本：**[7.1](https://github.com/GyanD/codexffmpeg/releases/download/7.1/ffmpeg-7.1-full_build.7z)**
 
 ---
 
@@ -152,7 +153,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\bm-extract-aac-sub.ps1 -La
 | ---------------------------- | ---------------------------------------------- |
 | `bm-extract-aac-sub_*.bat`   | Windows 拖曳入口（EN/TW/CN/JP），負責整理參數後呼叫 PowerShell |
 | `bm-extract-aac-sub.ps1`     | 核心流程與多語字串表（以 `-Language` 切換輸出語言）               |
-| `ffmpeg.exe` / `ffprobe.exe` | 需自行取得並置於腳本同目錄；本專案測試使用版本 `7.1`                  |
+| `ffmpeg.exe` / `ffprobe.exe` | 需自行取得並置於腳本同目錄；本專案測試使用版本 [`7.1`](https://github.com/GyanD/codexffmpeg/releases/download/7.1/ffmpeg-7.1-full_build.7z)                  |
 | `screenshot/`                | README 展示用截圖資源（`screenshot.png`）               |
 | `LICENSE`                    | MIT 授權條款                                       |
 | `README.md`                  | 專案使用說明                                         |
@@ -162,7 +163,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\bm-extract-aac-sub.ps1 -La
 
 ## 版本與多語系
 
-- **工具版本**：本專案測試使用的 `ffmpeg` / `ffprobe` 為 **7.1**（請自行下載並與腳本同資料夾）。
+- **工具版本**：本專案測試使用的 `ffmpeg` / `ffprobe` 為 **[7.1](https://github.com/GyanD/codexffmpeg/releases/download/7.1/ffmpeg-7.1-full_build.7z)**（請自行下載並與腳本同資料夾）。
 - **語言版本**：`EN`、`TW`、`CN`、`JP`（由 `-Language` 參數切換）。
 - **維護模式**：僅維護單一核心腳本 `bm-extract-aac-sub.ps1`。
 
