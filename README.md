@@ -6,18 +6,11 @@
 [![GitHub](https://img.shields.io/badge/GitHub-bm--extract--aac--sub-181717?logo=github)](https://github.com/BoringMan314/bm-extract-aac-sub)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-`bm-extract-aac-sub` 是一個 Windows 腳本工具，用來批次掃描影片檔並匯出：
+`bm-extract-aac-sub` 是一個 Windows 腳本工具，用來批次掃描影片檔並匯出 AAC、Sub。
 
-- 所有音訊流（統一轉為 **AAC 192k**）
-- 所有字幕流（依來源 codec 直接抽取，必要時自動 fallback 轉 ASS）
-
-支援拖曳檔案／資料夾到 `.bat`，也支援 PowerShell 直接帶參數執行。
-
-*用于批次提取视频中的音轨（转 AAC）与字幕流。*  
-
-*動画ファイルから音声トラック（AAC）と字幕を一括抽出します。*  
-
-*Batch-extracts audio (AAC) and subtitle streams from media files.*
+*bm-extract-aac-sub 是一个 Windows 脚本工具，用于批量扫描视频文件并导出 AAC、Sub。*<br>
+*bm-extract-aac-sub は、動画ファイルを一括スキャンし、AAC と Sub を書き出す Windows 用スクリプトツールです。*<br>
+*bm-extract-aac-sub is a Windows script tool that batch-scans video files and exports AAC and Sub.*
 
 > **聲明**：本專案僅為媒體檔案處理輔助工具，請確認你對來源內容具有合法使用權。
 
@@ -66,14 +59,16 @@
 
 ## 安裝方式
 
-1. 將以下檔案放在同一資料夾：
-  - `bm-extract-aac-sub.ps1`（核心腳本，單一維護）
-  - `bm-extract-aac-sub_EN.bat`
-  - `bm-extract-aac-sub_TW.bat`
-  - `bm-extract-aac-sub_CN.bat`
-  - `bm-extract-aac-sub_JP.bat`
-  - `ffmpeg.exe`
-  - `ffprobe.exe`
+### 手動安裝
+
+1. 將以下檔案放在**同一資料夾**：
+   - [`bm-extract-aac-sub.ps1`](bm-extract-aac-sub.ps1)（核心腳本，單一維護）
+   - [`bm-extract-aac-sub_EN.bat`](bm-extract-aac-sub_EN.bat)
+   - [`bm-extract-aac-sub_TW.bat`](bm-extract-aac-sub_TW.bat)
+   - [`bm-extract-aac-sub_CN.bat`](bm-extract-aac-sub_CN.bat)
+   - [`bm-extract-aac-sub_JP.bat`](bm-extract-aac-sub_JP.bat)
+   - `ffmpeg.exe`（[測試用版本 7.1 建置參考](https://github.com/GyanD/codexffmpeg/releases/download/7.1/ffmpeg-7.1-full_build.7z)）
+   - `ffprobe.exe`（同上）
 2. 準備要處理的影片檔，或包含影片檔的資料夾。
 
 ---
@@ -82,7 +77,7 @@
 
 ### 方式 A：拖曳執行（建議）
 
-把影片檔或資料夾直接拖到任一語系啟動器（例如 `bm-extract-aac-sub_TW.bat`）。
+把影片檔或資料夾直接拖到任一語系啟動器（例如 [`bm-extract-aac-sub_TW.bat`](bm-extract-aac-sub_TW.bat)）。
 
 ### 方式 B：PowerShell 直接執行
 
@@ -102,16 +97,14 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\bm-extract-aac-sub.ps1 -La
 
 ## 本機開發與測試
 
-- 修改 `bm-extract-aac-sub.ps1` 後，可直接雙擊任一語系 `.bat` 驗證輸出內容。
-- 若要測試指定語言，建議使用：`-Language EN/TW/CN/JP`。
-- 若要避免 `pause` 停住測試流程，可先設定環境變數 `BM_NO_PAUSE=1`。
+修改 [`bm-extract-aac-sub.ps1`](bm-extract-aac-sub.ps1) 後，可直接雙擊任一語系啟動器（例如 [`bm-extract-aac-sub_TW.bat`](bm-extract-aac-sub_TW.bat)）驗證輸出內容。若要測試指定語言，建議使用：`-Language EN`／`TW`／`CN`／`JP`。若要避免 `pause` 停住測試流程，可先設定環境變數 `BM_NO_PAUSE=1`。
 
 ---
 
 ## 技術概要
 
-- **批次入口** `bm-extract-aac-sub_*.bat`：負責整理拖曳參數、建立暫存清單後呼叫 PowerShell。
-- **核心腳本** `bm-extract-aac-sub.ps1`：包含單一提取流程與四語系字串表。
+- **批次入口** [`bm-extract-aac-sub_*.bat`](bm-extract-aac-sub_TW.bat)：負責整理拖曳參數、建立暫存清單後呼叫 PowerShell。
+- **核心腳本** [`bm-extract-aac-sub.ps1`](bm-extract-aac-sub.ps1)：包含單一提取流程與四語系字串表。
 - **媒體探測**：透過 `ffprobe` 讀取音訊/字幕 stream metadata。
 - **輸出策略**：音訊固定轉 `aac 192k`；字幕優先 `copy`，失敗時 fallback 為 `ass`。
 
@@ -148,32 +141,34 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\bm-extract-aac-sub.ps1 -La
 
 ## 專案結構
 
-
-| 路徑                           | 說明                                             |
-| ---------------------------- | ---------------------------------------------- |
-| `bm-extract-aac-sub_*.bat`   | Windows 拖曳入口（EN/TW/CN/JP），負責整理參數後呼叫 PowerShell |
-| `bm-extract-aac-sub.ps1`     | 核心流程與多語字串表（以 `-Language` 切換輸出語言）               |
-| `ffmpeg.exe` / `ffprobe.exe` | 需自行取得並置於腳本同目錄；本專案測試使用版本 [`7.1`](https://github.com/GyanD/codexffmpeg/releases/download/7.1/ffmpeg-7.1-full_build.7z)                  |
-| `screenshot/`                | README 展示用截圖資源（`screenshot.png`）               |
-| `LICENSE`                    | MIT 授權條款                                       |
-| `README.md`                  | 專案使用說明                                         |
-
+| 路徑 | 說明 |
+|------|------|
+| [`bm-extract-aac-sub.ps1`](bm-extract-aac-sub.ps1) | 核心流程與多語字串表（以 `-Language` 切換輸出語言；單一維護點） |
+| [`bm-extract-aac-sub_*.bat`](bm-extract-aac-sub_TW.bat) | Windows 拖曳入口（EN/TW/CN/JP），負責整理參數後呼叫 PowerShell |
+| `ffmpeg.exe` / `ffprobe.exe` | 需自行取得並置於腳本同目錄；本專案測試使用版本 [`7.1`](https://github.com/GyanD/codexffmpeg/releases/download/7.1/ffmpeg-7.1-full_build.7z) |
+| [`screenshot/`](screenshot/) | 說明用截圖（`screenshot.png`） |
+| [`LICENSE`](LICENSE) | MIT 授權條款 |
+| [`README.md`](README.md) | 專案使用說明 |
 
 ---
 
 ## 版本與多語系
 
 - **工具版本**：本專案測試使用的 `ffmpeg` / `ffprobe` 為 **[7.1](https://github.com/GyanD/codexffmpeg/releases/download/7.1/ffmpeg-7.1-full_build.7z)**（請自行下載並與腳本同資料夾）。
-- **語言版本**：`EN`、`TW`、`CN`、`JP`（由 `-Language` 參數切換）。
-- **維護模式**：僅維護單一核心腳本 `bm-extract-aac-sub.ps1`。
+- **語言版本**：`TW`、`CN`、`JP`、`EN`（由 `-Language` 參數切換）。
+- **維護模式**：僅維護單一核心腳本 [`bm-extract-aac-sub.ps1`](bm-extract-aac-sub.ps1)。
 
 ---
 
 ## 維護者：更新 GitHub
 
+### 更新至 GitHub
+
+**Bash / Git Bash / PowerShell：**
+
 ```powershell
 git add .
-git commit -m "docs: update README for bm-extract-aac-sub"
+git commit -m "docs: 更新內容與腳本說明"
 git push origin main
 ```
 
@@ -187,9 +182,8 @@ git push origin main
 
 ## 問題與建議
 
-若遇到抽取失敗、字幕格式不相容或命名問題，建議附上：
+歡迎透過 [GitHub Issues](https://github.com/BoringMan314/bm-extract-aac-sub/issues) 回報錯誤或提出改善建議。若遇抽取失敗、字幕格式不相容或命名問題，請一併附上：
 
 - 原始媒體檔資訊（可用 `ffprobe` 輸出）
 - 失敗時的終端訊息
 - 可重現步驟
-
