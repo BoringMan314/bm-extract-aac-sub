@@ -1,6 +1,6 @@
 ﻿param(
-    [ValidateSet('EN','TW','CN','JP')]
-    [string]$Language = 'EN',
+    [ValidateSet('TW','CN','JP','EN')]
+    [string]$Language = 'TW',
     [string]$InputListFile,
     [string[]]$Inputs
 )
